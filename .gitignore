@@ -1,0 +1,8 @@
+/bin/
+/coverage.out
+.DS_Store
+*.part
+credentials.json
+token.json
+login-session.json
+qr-code.png
