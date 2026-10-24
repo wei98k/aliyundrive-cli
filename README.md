@@ -1,6 +1,6 @@
 # aliyundrive
 
-面向 AI Agent 和脚本的阿里云盘 CLI。独立重写，不修改 `../src/aliyundrive-cli`，不依赖交互式终端，也不需要 MCP。
+面向 AI Agent 和脚本的阿里云盘 CLI。
 
 ## 设计约定
 
@@ -25,6 +25,19 @@ make install
 ```
 
 `make install` 将新命令 `aliyundrive` 放进 Go 的 bin 目录，不替换旧命令 `aliyundrive-cli`。项目仅依赖一个 QR PNG 编码库，HTTP、JSON、参数解析和文件传输使用 Go 标准库。
+
+## Agent Skill
+
+项目配套 Skill 位于 [`skills/aliyundrive/SKILL.md`](skills/aliyundrive/SKILL.md)，用于指导 Agent 通过 CLI 完成认证、文件定位、分页查询、写入预览和单文件传输，并处理部分成功与重试边界。不需要额外 MCP 服务。
+
+在项目根目录执行以下命令，可将 Skill 链接到用户技能目录 `~/.agents/skills`；运行前先完成 CLI 构建或安装，并确保目标位置没有已有同名技能：
+
+```sh
+mkdir -p "$HOME/.agents/skills"
+ln -s "$PWD/skills/aliyundrive" "$HOME/.agents/skills/aliyundrive"
+```
+
+若目标已存在，先检查其来源，不使用强制覆盖。链接后重新打开会话，可显式使用 `$aliyundrive`，例如「用 $aliyundrive 查找网盘中名称包含报告的文件」。其他支持 `SKILL.md` 的 Agent 可按其技能目录约定使用同一文件夹。安装 Skill 本身不会登录账号，也不会操作网盘。
 
 ## 登录
 

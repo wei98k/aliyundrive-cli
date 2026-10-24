@@ -1,0 +1,3 @@
+interface:
+  display_name: "阿里云盘"
+  short_description: "使用阿里云盘 CLI 管理文件、认证与单文件传输，先预览再写入"

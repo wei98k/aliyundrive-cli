@@ -24,3 +24,9 @@ go build -o bin/aliyundrive ./cmd/aliyundrive
 - Do not run live mutations without a user-requested target. Mock HTTP tests are the default.
 - This uses the web API family, not the registered-application Open Platform OAuth API. The full real-account workflow passed on 2026-10-22; future upstream changes still require revalidation.
 - Opt-in live tests require ALIYUNDRIVE_LIVE_TEST_CONFIG and ALIYUNDRIVE_LIVE_ALLOW_WRITE=1. They only mutate a random test directory and move it to the recycle bin afterward. Never enable them implicitly.
+
+## Companion Skill
+
+- The operational Agent skill lives in `skills/aliyundrive/SKILL.md`; it guides CLI usage, not source development.
+- Keep the skill and README examples aligned with `internal/cli/schema.go` when changing commands, flags, output fields, or safety behavior.
+- Validate skill examples with account-free `schema` and `help`; do not log in or mutate a real drive just to test documentation.
